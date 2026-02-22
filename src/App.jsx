@@ -6,7 +6,6 @@ function App() {
   const [prayerTimes, setPrayerTimes] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [showDonationDetails, setShowDonationDetails] = useState(false)
 
   // Hadith collection - 39 hadiths
   const hadiths = [
@@ -592,84 +591,34 @@ function App() {
         {/* Donation Section */}
         <section id="donate" className="py-16 bg-linear-to-br from-primary-50 to-accent-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold text-neutral-800 mb-4">
-                Support Our Mosque
-              </h2>
-              <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-                Your generous donations help us maintain the mosque, organize community programs, and serve those in need.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto">
-              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-neutral-800 mb-2 text-center">Mosque Maintenance</h3>
-                <p className="text-neutral-600 text-center text-sm">Help maintain and improve our facilities</p>
-              </div>
-              
-              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-neutral-800 mb-2 text-center">Islamic Education</h3>
-                <p className="text-neutral-600 text-center text-sm">Support Quran classes and educational programs</p>
-              </div>
-              
-              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-neutral-800 mb-2 text-center">Community Support</h3>
-                <p className="text-neutral-600 text-center text-sm">Help those in need in our community</p>
-              </div>
-            </div>
-
             <div className="text-center max-w-2xl mx-auto">
-              <button 
-                onClick={() => setShowDonationDetails(!showDonationDetails)}
-                className="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-8 rounded-lg transition-all shadow-md hover:shadow-lg mb-6"
-              >
-                {showDonationDetails ? 'Hide Bank Details' : 'View Bank Details'}
-              </button>
-
-              {showDonationDetails && (
-                <div className="bg-white rounded-xl p-8 shadow-xl animate-fadeIn">
-                  <h3 className="text-2xl font-bold text-neutral-800 mb-6">Bank Transfer Details</h3>
-                  <div className="space-y-4 text-left">
-                    <div className="flex justify-between items-center py-3 border-b border-neutral-200">
-                      <span className="font-semibold text-neutral-700">Account Name:</span>
-                      <span className="text-neutral-900 font-medium">Wibsey Islamic Society</span>
-                    </div>
-                    <div className="flex justify-between items-center py-3 border-b border-neutral-200">
-                      <span className="font-semibold text-neutral-700">Bank:</span>
-                      <span className="text-neutral-900 font-medium">Metro Bank</span>
-                    </div>
-                    <div className="flex justify-between items-center py-3 border-b border-neutral-200">
-                      <span className="font-semibold text-neutral-700">Sort Code:</span>
-                      <span className="text-neutral-900 font-medium">23-05-80</span>
-                    </div>
-                    <div className="flex justify-between items-center py-3 border-b border-neutral-200">
-                      <span className="font-semibold text-neutral-700">Account Number:</span>
-                      <span className="text-neutral-900 font-medium">56594147</span>
-                    </div>
+              <div className="bg-white rounded-xl p-8 shadow-xl">
+                <h3 className="text-2xl font-bold text-neutral-800 mb-6">Bank Transfer Details</h3>
+                <div className="space-y-4 text-left">
+                  <div className="flex justify-between items-center py-3 border-b border-neutral-200">
+                    <span className="font-semibold text-neutral-700">Account Name:</span>
+                    <span className="text-neutral-900 font-medium">Wibsey Islamic Society</span>
                   </div>
-                  <p className="text-sm text-primary-700 font-semibold mt-6 pt-6 border-t border-neutral-200">
-                    Please support Wibsey Musalla by making monthly Standing Order payments
-                  </p>
-                  <p className="text-sm text-neutral-600 italic mt-4">
-                    "The believer's shade on the Day of Resurrection will be his charity" - Tirmidhi
-                  </p>
+                  <div className="flex justify-between items-center py-3 border-b border-neutral-200">
+                    <span className="font-semibold text-neutral-700">Bank:</span>
+                    <span className="text-neutral-900 font-medium">Metro Bank</span>
+                  </div>
+                  <div className="flex justify-between items-center py-3 border-b border-neutral-200">
+                    <span className="font-semibold text-neutral-700">Sort Code:</span>
+                    <span className="text-neutral-900 font-medium">23-05-80</span>
+                  </div>
+                  <div className="flex justify-between items-center py-3 border-b border-neutral-200">
+                    <span className="font-semibold text-neutral-700">Account Number:</span>
+                    <span className="text-neutral-900 font-medium">56594147</span>
+                  </div>
                 </div>
-              )}
+                <p className="text-sm text-primary-700 font-semibold mt-6 pt-6 border-t border-neutral-200">
+                  Please support Wibsey Musalla by making monthly Standing Order payments
+                </p>
+                <p className="text-sm text-neutral-600 italic mt-4">
+                  "The believer's shade on the Day of Resurrection will be his charity" - Tirmidhi
+                </p>
+              </div>
             </div>
           </div>
         </section>
