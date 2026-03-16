@@ -416,7 +416,14 @@ function App() {
       </div>
       
       {/* Header */}
-      <header className="bg-linear-to-r from-primary-200 via-accent-100 to-primary-300 border-b border-primary-300 shadow-md sticky top-0 z-50">
+      <header
+        className="border-b border-primary-300 shadow-md sticky top-0 z-50"
+        style={{
+          backgroundColor: '#dcfce7',
+          opacity: 1,
+          backdropFilter: 'none'
+        }}
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
@@ -447,6 +454,14 @@ function App() {
               </a>
               <a href="#contact" className="text-neutral-700 hover:text-primary-600 font-medium transition-colors">
                 Contact
+              </a>
+              <a
+                href="https://maps.app.goo.gl/j6UmkD8GZNshgGG88?g_st=iw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-700 hover:text-primary-600 font-medium transition-colors"
+              >
+                Location
               </a>
             </nav>
 
@@ -771,6 +786,14 @@ function App() {
                       <p className="text-neutral-600">75 Odsal Road, Wibsey</p>
                       <p className="text-neutral-600">Bradford BD6 1PN</p>
                       <p className="text-neutral-600">United Kingdom</p>
+                      <a
+                        href="https://maps.app.goo.gl/j6UmkD8GZNshgGG88?g_st=iw"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block mt-3 text-primary-700 hover:text-primary-800 font-semibold underline"
+                      >
+                        Open Mosque Location in Google Maps
+                      </a>
                     </div>
                   </div>
 
@@ -957,6 +980,14 @@ function App() {
               <p className="text-neutral-300 mb-2">Bradford BD6 1PN, UK</p>
               <p className="text-neutral-300 mb-1">Zaheer: 07539 836 366</p>
               <p className="text-neutral-300">Rifaqat: 07813 100 885</p>
+              <a
+                href="https://maps.app.goo.gl/j6UmkD8GZNshgGG88?g_st=iw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-3 text-accent-200 hover:text-accent-100 transition-colors underline"
+              >
+                Google Maps Location
+              </a>
             </div>
             <div>
               <h3 className="text-xl font-bold mb-4">Quick Links</h3>
