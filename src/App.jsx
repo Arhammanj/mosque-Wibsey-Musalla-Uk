@@ -395,7 +395,7 @@ function App() {
   return (
     <div
       className={`min-h-screen flex flex-col ${darkMode ? '' : 'bg-neutral-50'}`}
-      style={darkMode ? { backgroundColor: '#dcfce7' } : undefined}
+      style={darkMode ? { background: 'linear-gradient(135deg, #ecfdf5 0%, #fefce8 50%, #dcfce7 100%)' } : undefined}
     >
       
       {/* Shahada Banner */}
@@ -416,7 +416,7 @@ function App() {
       </div>
       
       {/* Header */}
-      <header className="bg-white shadow-md sticky top-0 z-50">
+      <header className="bg-linear-to-r from-primary-50 via-accent-50 to-primary-100 shadow-md sticky top-0 z-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
@@ -527,7 +527,7 @@ function App() {
         </section>
 
         {/* Islamic Phrases Section */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-linear-to-br from-primary-50 to-accent-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl sm:text-4xl font-bold text-neutral-800 mb-4">
@@ -539,7 +539,7 @@ function App() {
             </div>
 
             <div className="max-w-6xl mx-auto overflow-x-auto">
-              <table className="w-full bg-white shadow-lg rounded-xl overflow-hidden">
+              <table className="w-full bg-accent-50 shadow-lg rounded-xl overflow-hidden">
                 <thead className="bg-primary-600 text-white">
                   <tr>
                     <th className="px-4 py-4 text-left font-semibold">Arabic Phrase</th>
@@ -616,7 +616,7 @@ function App() {
         </section>
 
         {/* Prayer Times Section */}
-        <section id="prayers" className="py-16 bg-white">
+        <section id="prayers" className="py-16 bg-linear-to-br from-accent-50 to-primary-100">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl sm:text-4xl font-bold text-neutral-800 mb-4">
@@ -648,11 +648,11 @@ function App() {
                     className={`rounded-xl p-6 text-center transition-all duration-300 ${
                       prayer.name === nextPrayer 
                         ? 'bg-accent-500 shadow-xl scale-105' 
-                        : 'bg-neutral-50 hover:shadow-lg hover:-translate-y-1'
+                        : 'bg-primary-50 hover:shadow-lg hover:-translate-y-1'
                     }`}
                   >
                     {prayer.name === nextPrayer && (
-                      <div className="text-xs font-bold mb-2 uppercase tracking-wider text-neutral-900 bg-white px-2 py-1 rounded">
+                      <div className="text-xs font-bold mb-2 uppercase tracking-wider text-neutral-900 bg-accent-100 px-2 py-1 rounded">
                         Next Prayer
                       </div>
                     )}
@@ -686,7 +686,7 @@ function App() {
         <section id="donate" className="py-16 bg-linear-to-br from-primary-50 to-accent-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto">
-              <div className="bg-white rounded-xl p-8 shadow-xl">
+              <div className="bg-accent-50 rounded-xl p-8 shadow-xl">
                 <h3 className="text-2xl font-bold text-neutral-800 mb-6">Bank Transfer Details</h3>
                 <div className="space-y-4 text-left">
                   <div className="flex justify-between items-center py-3 border-b border-neutral-200">
@@ -718,7 +718,7 @@ function App() {
         </section>
 
         {/* Announcements Section */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-linear-to-br from-primary-50 to-accent-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
             <h2 className="text-3xl sm:text-4xl font-bold text-neutral-800 mb-8 text-center">
               Latest Announcements
@@ -727,7 +727,7 @@ function App() {
               {announcements.map((item, index) => (
                 <div
                   key={item.id}
-                  className={`bg-neutral-50 p-6 rounded-lg border-l-4 hover:shadow-md transition-shadow ${
+                  className={`bg-accent-50 p-6 rounded-lg border-l-4 hover:shadow-md transition-shadow ${
                     index % 2 === 0 ? 'border-primary-600' : 'border-accent-500'
                   }`}
                 >
@@ -753,7 +753,7 @@ function App() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Contact Information */}
-              <div className="bg-white rounded-xl p-8 shadow-lg">
+              <div className="bg-primary-50 rounded-xl p-8 shadow-lg">
                 <h3 className="text-2xl font-bold text-neutral-800 mb-6">Get In Touch</h3>
                 
                 <div className="space-y-6">
@@ -808,7 +808,7 @@ function App() {
               </div>
 
               {/* Map or Additional Info */}
-              <div className="bg-white rounded-xl p-8 shadow-lg">
+              <div className="bg-accent-50 rounded-xl p-8 shadow-lg">
                 <h3 className="text-2xl font-bold text-neutral-800 mb-6">Visit Us</h3>
                 
                 <div className="space-y-4">
@@ -859,7 +859,7 @@ function App() {
         </section>
 
         {/* Four Quls Section */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-linear-to-br from-primary-100 to-accent-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-neutral-800 mb-4">
@@ -872,7 +872,7 @@ function App() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {/* Surah Al-Kafirun */}
-              <div className="bg-white rounded-xl shadow-lg border-2 border-primary-200 p-8 hover:shadow-xl transition-shadow">
+              <div className="bg-primary-50 rounded-xl shadow-lg border-2 border-primary-200 p-8 hover:shadow-xl transition-shadow">
                 <h3 className="text-xl font-bold text-primary-700 mb-6 text-center">
                   Surah Al-Kafirun
                 </h3>
@@ -889,7 +889,7 @@ function App() {
               </div>
 
               {/* Surah Al-Ikhlas */}
-              <div className="bg-white rounded-xl shadow-lg border-2 border-accent-200 p-8 hover:shadow-xl transition-shadow">
+              <div className="bg-accent-50 rounded-xl shadow-lg border-2 border-accent-200 p-8 hover:shadow-xl transition-shadow">
                 <h3 className="text-xl font-bold text-accent-700 mb-6 text-center">
                   Surah Al-Ikhlas
                 </h3>
@@ -904,7 +904,7 @@ function App() {
               </div>
 
               {/* Surah Al-Falaq */}
-              <div className="bg-white rounded-xl shadow-lg border-2 border-primary-200 p-8 hover:shadow-xl transition-shadow">
+              <div className="bg-primary-50 rounded-xl shadow-lg border-2 border-primary-200 p-8 hover:shadow-xl transition-shadow">
                 <h3 className="text-xl font-bold text-primary-700 mb-6 text-center">
                   Surah Al-Falaq
                 </h3>
@@ -920,7 +920,7 @@ function App() {
               </div>
 
               {/* Surah An-Nas */}
-              <div className="bg-white rounded-xl shadow-lg border-2 border-accent-200 p-8 hover:shadow-xl transition-shadow">
+              <div className="bg-accent-50 rounded-xl shadow-lg border-2 border-accent-200 p-8 hover:shadow-xl transition-shadow">
                 <h3 className="text-xl font-bold text-accent-700 mb-6 text-center">
                   Surah An-Nas
                 </h3>
@@ -941,7 +941,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="text-white relative overflow-hidden" style={{ backgroundColor: '#166534' }}>
+      <footer className="text-white relative overflow-hidden" style={{ background: 'linear-gradient(90deg, #166534 0%, #a16207 50%, #166534 100%)' }}>
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-10" 
