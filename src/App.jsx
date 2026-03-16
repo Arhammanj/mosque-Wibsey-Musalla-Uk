@@ -393,10 +393,16 @@ function App() {
   const nextPrayer = getNextPrayer()
 
   return (
-    <div className={`min-h-screen flex flex-col ${darkMode ? 'bg-primary-100' : 'bg-neutral-50'}`}>
+    <div
+      className={`min-h-screen flex flex-col ${darkMode ? '' : 'bg-neutral-50'}`}
+      style={darkMode ? { backgroundColor: '#dcfce7' } : undefined}
+    >
       
       {/* Shahada Banner */}
-      <div className="bg-linear-to-r from-primary-600 via-primary-700 to-primary-600 text-white py-6 shadow-lg">
+      <div
+        className="text-white py-6 shadow-lg"
+        style={{ background: 'linear-gradient(90deg, #15803d 0%, #166534 50%, #15803d 100%)' }}
+      >
         <div className="container mx-auto px-4">
           <div className="text-center">
             <p className="text-3xl md:text-4xl lg:text-5xl font-semibold" style={{ fontFamily: 'Traditional Arabic, Arial', letterSpacing: '0.05em' }}>
@@ -459,9 +465,12 @@ function App() {
       <main className="grow">
         
         {/* Hero Section with Background Image */}
-        <section className="relative h-150 bg-linear-to-r from-primary-900 to-primary-700 overflow-hidden">
+        <section
+          className="relative h-150 overflow-hidden"
+          style={{ background: 'linear-gradient(90deg, #14532d 0%, #166534 100%)' }}
+        >
           {/* Background Image Overlay */}
-          <div className="absolute inset-0 bg-primary-700 opacity-40"></div>
+          <div className="absolute inset-0 opacity-40" style={{ backgroundColor: '#14532d' }}></div>
           <div 
             className="absolute inset-0 bg-cover bg-center" 
             style={{
@@ -932,7 +941,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-primary-700 text-white relative overflow-hidden">
+      <footer className="text-white relative overflow-hidden" style={{ backgroundColor: '#166534' }}>
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-10" 
