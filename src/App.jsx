@@ -393,7 +393,7 @@ function App() {
   const nextPrayer = getNextPrayer()
 
   return (
-    <div className={`min-h-screen flex flex-col ${darkMode ? 'bg-neutral-900' : 'bg-neutral-50'}`}>
+    <div className={`min-h-screen flex flex-col ${darkMode ? 'bg-primary-100' : 'bg-neutral-50'}`}>
       
       {/* Shahada Banner */}
       <div className="bg-linear-to-r from-primary-600 via-primary-700 to-primary-600 text-white py-6 shadow-lg">
@@ -461,7 +461,7 @@ function App() {
         {/* Hero Section with Background Image */}
         <section className="relative h-150 bg-linear-to-r from-primary-900 to-primary-700 overflow-hidden">
           {/* Background Image Overlay */}
-          <div className="absolute inset-0 bg-black opacity-40"></div>
+          <div className="absolute inset-0 bg-primary-700 opacity-40"></div>
           <div 
             className="absolute inset-0 bg-cover bg-center" 
             style={{
@@ -932,7 +932,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-neutral-800 text-white relative overflow-hidden">
+      <footer className="bg-primary-700 text-white relative overflow-hidden">
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-10" 

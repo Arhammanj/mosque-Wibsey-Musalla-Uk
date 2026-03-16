@@ -3,14 +3,16 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #1a1a1a;
+  background: radial-gradient(circle at 20% 20%, #34d399 0%, #059669 45%, #047857 100%);
 }
 
 .admin-login-box {
-  background-color: #2d2d2d;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
   padding: 40px;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(4, 120, 87, 0.35);
   text-align: center;
 }
 
@@ -23,15 +25,15 @@
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid #4a4a4a;
+  border: 1px solid #86efac;
   border-radius: 4px;
-  background-color: #3a3a3a;
-  color: #ffffff;
+  background-color: #f0fdf4;
+  color: #14532d;
   font-size: 16px;
 }
 
 .admin-login-box input::placeholder {
-  color: #888888;
+  color: #22c55e;
 }
 
 .admin-login-box button {
@@ -52,8 +54,8 @@
 
 .admin-panel {
   min-height: 100vh;
-  background-color: #1a1a1a;
-  color: #ffffff;
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 40%, #86efac 100%);
+  color: #064e3b;
   padding: 20px;
 }
 
@@ -61,7 +63,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #2d2d2d;
+  background: linear-gradient(90deg, #065f46 0%, #047857 100%);
+  color: #ffffff;
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 30px;
@@ -100,7 +103,8 @@
 }
 
 .admin-section {
-  background-color: #2d2d2d;
+  background-color: #ecfdf5;
+  border: 1px solid #6ee7b7;
   padding: 20px;
   border-radius: 8px;
 }
@@ -114,7 +118,7 @@
 .helper-text {
   margin-top: -8px;
   margin-bottom: 14px;
-  color: #9ca3af;
+  color: #166534;
   font-size: 13px;
 }
 
@@ -126,17 +130,17 @@
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  color: #d1d5db;
+  color: #065f46;
 }
 
 .prayer-input input,
 .admin-section textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #4a4a4a;
+  border: 1px solid #6ee7b7;
   border-radius: 4px;
-  background-color: #3a3a3a;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #14532d;
   font-size: 14px;
   box-sizing: border-box;
 }
@@ -152,26 +156,26 @@
 }
 
 .time-preview {
-  background-color: #111827;
-  border: 1px solid #374151;
+  background-color: #065f46;
+  border: 1px solid #047857;
   border-radius: 6px;
   padding: 8px 10px;
   font-weight: 700;
-  color: #d1fae5;
+  color: #ecfdf5;
   min-width: 96px;
   text-align: center;
 }
 
 .prayer-input input::placeholder,
 .admin-section textarea::placeholder {
-  color: #888888;
+  color: #22c55e;
 }
 
 .prayer-input input:focus,
 .admin-section textarea:focus {
   outline: none;
-  border-color: #10b981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.22);
 }
 
 .admin-section textarea {
@@ -219,21 +223,21 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 12px;
-  background-color: #1f2937;
-  border: 1px solid #374151;
+  background-color: #d1fae5;
+  border: 1px solid #6ee7b7;
   border-radius: 8px;
   padding: 12px;
 }
 
 .announcement-item h4 {
   margin: 0 0 6px;
-  color: #f9fafb;
+  color: #065f46;
   font-size: 15px;
 }
 
 .announcement-item p {
   margin: 0;
-  color: #d1d5db;
+  color: #14532d;
   font-size: 14px;
 }
 
@@ -262,8 +266,8 @@
 }
 
 .setting-field {
-  background-color: #1f2937;
-  border: 1px solid #374151;
+  background-color: #d1fae5;
+  border: 1px solid #6ee7b7;
   border-radius: 8px;
   padding: 12px;
 }
@@ -272,7 +276,7 @@
   display: block;
   font-weight: 700;
   margin-bottom: 8px;
-  color: #d1d5db;
+  color: #065f46;
 }
 
 .setting-field input[type="text"],
