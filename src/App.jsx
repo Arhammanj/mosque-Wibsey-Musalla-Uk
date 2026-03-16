@@ -395,7 +395,7 @@ function App() {
   return (
     <div
       className={`min-h-screen flex flex-col ${darkMode ? '' : 'bg-neutral-50'}`}
-      style={darkMode ? { background: 'linear-gradient(135deg, #ecfdf5 0%, #fefce8 50%, #dcfce7 100%)' } : undefined}
+      style={darkMode ? { background: 'linear-gradient(135deg, #bbf7d0 0%, #fde68a 50%, #86efac 100%)' } : undefined}
     >
       
       {/* Shahada Banner */}
@@ -416,7 +416,7 @@ function App() {
       </div>
       
       {/* Header */}
-      <header className="bg-linear-to-r from-primary-50 via-accent-50 to-primary-100 shadow-md sticky top-0 z-50">
+      <header className="bg-linear-to-r from-primary-200 via-accent-100 to-primary-300 border-b border-primary-300 shadow-md sticky top-0 z-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
@@ -466,6 +466,7 @@ function App() {
         
         {/* Hero Section with Background Image */}
         <section
+          id="home"
           className="relative h-150 overflow-hidden"
           style={{ background: 'linear-gradient(90deg, #14532d 0%, #166534 100%)' }}
         >
@@ -527,7 +528,7 @@ function App() {
         </section>
 
         {/* Islamic Phrases Section */}
-        <section className="py-16 bg-linear-to-br from-primary-50 to-accent-50">
+        <section className="py-16 bg-linear-to-br from-primary-200 to-accent-100">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl sm:text-4xl font-bold text-neutral-800 mb-4">
@@ -616,7 +617,7 @@ function App() {
         </section>
 
         {/* Prayer Times Section */}
-        <section id="prayers" className="py-16 bg-linear-to-br from-accent-50 to-primary-100">
+        <section id="prayers" className="scroll-mt-32 py-16 bg-linear-to-br from-accent-100 to-primary-200">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl sm:text-4xl font-bold text-neutral-800 mb-4">
@@ -683,7 +684,7 @@ function App() {
         </section>
 
         {/* Donation Section */}
-        <section id="donate" className="py-16 bg-linear-to-br from-primary-50 to-accent-50">
+        <section id="donate" className="scroll-mt-32 py-16 bg-linear-to-br from-primary-200 to-accent-100">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto">
               <div className="bg-accent-50 rounded-xl p-8 shadow-xl">
@@ -718,7 +719,7 @@ function App() {
         </section>
 
         {/* Announcements Section */}
-        <section className="py-16 bg-linear-to-br from-primary-50 to-accent-50">
+        <section className="py-16 bg-linear-to-br from-primary-200 to-accent-100">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
             <h2 className="text-3xl sm:text-4xl font-bold text-neutral-800 mb-8 text-center">
               Latest Announcements
@@ -740,7 +741,7 @@ function App() {
         </section>
 
         {/* Contact Us Section */}
-        <section id="contact" className="py-16 bg-linear-to-br from-primary-50 to-accent-50">
+        <section id="contact" className="scroll-mt-32 py-16 bg-linear-to-br from-primary-200 to-accent-100">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <div className="text-center mb-12">
               <h2 className="text-3xl sm:text-4xl font-bold text-neutral-800 mb-4">
@@ -859,7 +860,7 @@ function App() {
         </section>
 
         {/* Four Quls Section */}
-        <section className="py-20 bg-linear-to-br from-primary-100 to-accent-50">
+        <section className="py-20 bg-linear-to-br from-primary-200 to-accent-100">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-neutral-800 mb-4">
