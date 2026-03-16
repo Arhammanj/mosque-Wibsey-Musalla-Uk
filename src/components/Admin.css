@@ -1,0 +1,300 @@
+.admin-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #1a1a1a;
+}
+
+.admin-login-box {
+  background-color: #2d2d2d;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.admin-login-box h2 {
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.admin-login-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #4a4a4a;
+  border-radius: 4px;
+  background-color: #3a3a3a;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.admin-login-box input::placeholder {
+  color: #888888;
+}
+
+.admin-login-box button {
+  width: 100%;
+  padding: 10px;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.admin-login-box button:hover {
+  background-color: #059669;
+}
+
+.admin-panel {
+  min-height: 100vh;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  padding: 20px;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2d2d2d;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.admin-header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.logout-btn {
+  padding: 10px 20px;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.logout-btn:hover {
+  background-color: #dc2626;
+}
+
+.admin-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .admin-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-section {
+  background-color: #2d2d2d;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.admin-section h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #10b981;
+}
+
+.helper-text {
+  margin-top: -8px;
+  margin-bottom: 14px;
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.prayer-input {
+  margin-bottom: 15px;
+}
+
+.prayer-input label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #d1d5db;
+}
+
+.prayer-input input,
+.admin-section textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #4a4a4a;
+  border-radius: 4px;
+  background-color: #3a3a3a;
+  color: #ffffff;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.time-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.time-row input[type="time"] {
+  max-width: 200px;
+}
+
+.time-preview {
+  background-color: #111827;
+  border: 1px solid #374151;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-weight: 700;
+  color: #d1fae5;
+  min-width: 96px;
+  text-align: center;
+}
+
+.prayer-input input::placeholder,
+.admin-section textarea::placeholder {
+  color: #888888;
+}
+
+.prayer-input input:focus,
+.admin-section textarea:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.admin-section textarea {
+  resize: vertical;
+  font-family: Arial, sans-serif;
+  margin-top: 10px;
+}
+
+.save-btn,
+.load-btn {
+  padding: 10px 20px;
+  margin-top: 15px;
+  margin-right: 10px;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.save-btn:hover,
+.load-btn:hover {
+  background-color: #059669;
+}
+
+.load-btn {
+  background-color: #3b82f6;
+}
+
+.load-btn:hover {
+  background-color: #2563eb;
+}
+
+.announcement-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.announcement-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  background-color: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.announcement-item h4 {
+  margin: 0 0 6px;
+  color: #f9fafb;
+  font-size: 15px;
+}
+
+.announcement-item p {
+  margin: 0;
+  color: #d1d5db;
+  font-size: 14px;
+}
+
+.delete-btn {
+  padding: 8px 10px;
+  background-color: #ef4444;
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.setting-field {
+  background-color: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.setting-field label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #d1d5db;
+}
+
+.setting-field input[type="text"],
+.setting-field input[type="file"] {
+  width: 100%;
+}
+
+.setting-field input[type="file"] {
+  margin-top: 10px;
+}
+
+@media (max-width: 900px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .time-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .time-row input[type="time"] {
+    max-width: 100%;
+  }
+}

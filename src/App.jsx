@@ -1,11 +1,31 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import { fetchPrayerTimes, fetchAnnouncements, fetchSiteSettings } from './services/firebaseService'
 
 function App() {
   const [darkMode, setDarkMode] = useState(true)
   const [prayerTimes, setPrayerTimes] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [announcements, setAnnouncements] = useState([
+    {
+      id: 'default-1',
+      title: 'Ramadan Schedule',
+      message: 'Ramadan prayer schedule will be announced soon. Stay tuned for updates.'
+    },
+    {
+      id: 'default-2',
+      title: 'Join Our WhatsApp Group',
+      message: 'Stay updated with the latest news, events, and announcements. Join our WhatsApp group for real-time updates.'
+    }
+  ])
+  const [siteSettings, setSiteSettings] = useState({
+    heroTitle: 'Welcome to Al-Rahma Islamic Centre',
+    heroSubtitle: 'A place of worship, unity, and community service',
+    heroImageUrl: '/q2.jpg',
+    prayerImageUrl: '/timing.jpeg',
+    footerImageUrl: '/q1.webp'
+  })
 
   // Hadith collection - 39 hadiths
   const hadiths = [
@@ -217,12 +237,71 @@ function App() {
 
   const hadithOfTheDay = getHadithOfTheDay()
 
-  // Fetch prayer times from API using coordinates
+  // Fetch editable site settings and announcements
   useEffect(() => {
-    const fetchPrayerTimes = async () => {
+    const loadSiteContent = async () => {
+      const [settingsData, announcementsData] = await Promise.all([
+        fetchSiteSettings(),
+        fetchAnnouncements()
+      ])
+
+      if (settingsData) {
+        setSiteSettings((prev) => ({ ...prev, ...settingsData }))
+      }
+
+      if (announcementsData && typeof announcementsData === 'object') {
+        const mappedAnnouncements = Object.entries(announcementsData)
+          .filter(([, value]) => value && typeof value === 'object' && value.message)
+          .map(([id, value]) => ({
+            id,
+            title: value.title || 'Announcement',
+            message: value.message,
+            timestamp: value.timestamp || ''
+          }))
+          .sort((a, b) => (b.timestamp || '').localeCompare(a.timestamp || ''))
+
+        if (mappedAnnouncements.length > 0) {
+          setAnnouncements(mappedAnnouncements)
+        }
+      }
+    }
+
+    loadSiteContent()
+  }, [])
+
+  // Fetch prayer times from Firebase or API
+  useEffect(() => {
+    const loadPrayerTimes = async () => {
       try {
         setLoading(true)
-        // Coordinates for Wibsey Musalla, Bradford BD6 1PN
+        
+        // First, try to fetch from Firebase
+        const firebaseData = await fetchPrayerTimes()
+        
+        if (firebaseData) {
+          // If Firebase has data, use it
+          const prayers = []
+          Object.keys(firebaseData).forEach(key => {
+            const prayer = firebaseData[key]
+            if (prayer.time) {
+              prayers.push({
+                name: key.charAt(0).toUpperCase() + key.slice(1),
+                time: prayer.time,
+                hour: prayer.hour || 0,
+                minute: prayer.minute || 0
+              })
+            }
+          })
+          
+          if (prayers.length > 0) {
+            setPrayerTimes(prayers)
+            setError(null)
+            setLoading(false)
+            return
+          }
+        }
+        
+        // Fallback: Fetch from API
         const latitude = 53.7765
         const longitude = -1.7623
         const method = 2 // ISNA method
@@ -273,20 +352,24 @@ function App() {
       }
     }
 
-    fetchPrayerTimes()
+    loadPrayerTimes()
     
     // Refresh prayer times daily at midnight
     const now = new Date()
     const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1)
     const timeUntilMidnight = tomorrow - now
     
+    let dailyInterval
+
     const midnightTimer = setTimeout(() => {
-      fetchPrayerTimes()
-      const dailyInterval = setInterval(fetchPrayerTimes, 24 * 60 * 60 * 1000)
-      return () => clearInterval(dailyInterval)
+      loadPrayerTimes()
+      dailyInterval = setInterval(loadPrayerTimes, 24 * 60 * 60 * 1000)
     }, timeUntilMidnight)
 
-    return () => clearTimeout(midnightTimer)
+    return () => {
+      clearTimeout(midnightTimer)
+      if (dailyInterval) clearInterval(dailyInterval)
+    }
   }, [])
 
   // Get next prayer
@@ -332,12 +415,14 @@ function App() {
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center text-white text-2xl font-bold">
-                W
-              </div>
+              <img
+                src="/Al-Rahma Islamic Centre.jpeg"
+                alt="Al-Rahma Islamic Centre Logo"
+                className="w-12 h-12 rounded-lg object-cover border border-primary-200"
+              />
               <div>
                 <h1 className="text-xl sm:text-2xl font-bold text-neutral-800">
-                  Wibsey Musalla
+                  Al-Rahma Islamic Centre
                 </h1>
                 <p className="text-xs text-neutral-500 hidden sm:block">Bradford, West Yorkshire</p>
               </div>
@@ -380,7 +465,7 @@ function App() {
           <div 
             className="absolute inset-0 bg-cover bg-center" 
             style={{
-              backgroundImage: "url('/q2.jpg')",
+              backgroundImage: `url('${siteSettings.heroImageUrl || '/q2.jpg'}')`,
               opacity: 0.5
             }}
           ></div>
@@ -409,10 +494,10 @@ function App() {
           <div className="relative h-full flex items-center justify-center text-center px-4">
             <div className="max-w-4xl">
               <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                Welcome to Wibsey Musalla
+                {siteSettings.heroTitle}
               </h2>
               <p className="text-xl sm:text-2xl text-white mb-8 font-light">
-                A place of worship, unity, and community service
+                {siteSettings.heroSubtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
@@ -580,7 +665,7 @@ function App() {
             {/* Timing Image */}
             <div className="flex justify-center">
               <img 
-                src="/timing.jpeg" 
+                src={siteSettings.prayerImageUrl || '/timing.jpeg'} 
                 alt="Prayer Times Schedule" 
                 className="w-full max-w-4xl rounded-xl shadow-2xl border-2 border-primary-200"
               />
@@ -613,7 +698,7 @@ function App() {
                   </div>
                 </div>
                 <p className="text-sm text-primary-700 font-semibold mt-6 pt-6 border-t border-neutral-200">
-                  Please support Wibsey Musalla by making monthly Standing Order payments
+                  Please support Al-Rahma Islamic Centre by making monthly Standing Order payments
                 </p>
                 <p className="text-sm text-neutral-600 italic mt-4">
                   "The believer's shade on the Day of Resurrection will be his charity" - Tirmidhi
@@ -630,18 +715,17 @@ function App() {
               Latest Announcements
             </h2>
             <div className="space-y-4">
-              <div className="bg-neutral-50 p-6 rounded-lg border-l-4 border-primary-600 hover:shadow-md transition-shadow">
-                <h4 className="font-semibold text-lg text-neutral-800 mb-2">Ramadan Schedule</h4>
-                <p className="text-neutral-600">
-                  Ramadan prayer schedule will be announced soon. Stay tuned for updates.
-                </p>
-              </div>
-              <div className="bg-neutral-50 p-6 rounded-lg border-l-4 border-accent-500 hover:shadow-md transition-shadow">
-                <h4 className="font-semibold text-lg text-neutral-800 mb-2">Join Our WhatsApp Group</h4>
-                <p className="text-neutral-600">
-                  Stay updated with the latest news, events, and announcements. Join our WhatsApp group for real-time updates.
-                </p>
-              </div>
+              {announcements.map((item, index) => (
+                <div
+                  key={item.id}
+                  className={`bg-neutral-50 p-6 rounded-lg border-l-4 hover:shadow-md transition-shadow ${
+                    index % 2 === 0 ? 'border-primary-600' : 'border-accent-500'
+                  }`}
+                >
+                  <h4 className="font-semibold text-lg text-neutral-800 mb-2">{item.title}</h4>
+                  <p className="text-neutral-600">{item.message}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -720,7 +804,7 @@ function App() {
                 
                 <div className="space-y-4">
                   <p className="text-neutral-600 leading-relaxed">
-                    Wibsey Musalla welcomes everyone to join us for daily prayers, Islamic education, and community events. 
+                    Al-Rahma Islamic Centre welcomes everyone to join us for daily prayers, Islamic education, and community events. 
                     We are located in the heart of Wibsey, Bradford.
                   </p>
                   
@@ -852,7 +936,7 @@ function App() {
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-10" 
-          style={{ backgroundImage: "url('/q1.webp')" }}
+          style={{ backgroundImage: `url('${siteSettings.footerImageUrl || '/q1.webp'}')` }}
         ></div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
@@ -882,7 +966,7 @@ function App() {
             </div>
           </div>
           <div className="border-t border-neutral-700 mt-8 pt-8 text-center">
-            <p className="text-neutral-400 text-sm">&copy; 2026 Wibsey Musalla. All rights reserved.</p>
+            <p className="text-neutral-400 text-sm">&copy; 2026 Al-Rahma Islamic Centre. All rights reserved.</p>
           </div>
         </div>
       </footer>
