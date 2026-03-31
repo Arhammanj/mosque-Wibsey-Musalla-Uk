@@ -301,7 +301,7 @@ function App() {
           }
         }
         
-        // Fallback: Fetch from API
+        // Fallback: Fetch from public API
         const latitude = 53.7765
         const longitude = -1.7623
         const method = 2 // ISNA method
@@ -646,44 +646,6 @@ function App() {
                 <p className="text-neutral-900 font-bold mt-2 text-lg">
                   Next Prayer: {nextPrayer}
                 </p>
-              )}
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-6xl mx-auto mb-12">
-              {loading ? (
-                Array.from({ length: 5 }).map((_, index) => (
-                  <div key={index} className="bg-neutral-100 rounded-xl p-6 animate-pulse">
-                    <div className="h-6 bg-neutral-300 rounded mb-4"></div>
-                    <div className="h-10 bg-neutral-300 rounded"></div>
-                  </div>
-                ))
-              ) : (
-                prayerTimes.map((prayer) => (
-                  <div 
-                    key={prayer.name}
-                    className={`rounded-xl p-6 text-center transition-all duration-300 ${
-                      prayer.name === nextPrayer 
-                        ? 'bg-accent-500 shadow-xl scale-105' 
-                        : 'bg-primary-50 hover:shadow-lg hover:-translate-y-1'
-                    }`}
-                  >
-                    {prayer.name === nextPrayer && (
-                      <div className="text-xs font-bold mb-2 uppercase tracking-wider text-neutral-900 bg-accent-100 px-2 py-1 rounded">
-                        Next Prayer
-                      </div>
-                    )}
-                    <h3 className={`text-lg font-semibold mb-2 ${
-                      prayer.name === nextPrayer ? 'text-neutral-900' : 'text-neutral-900'
-                    }`}>
-                      {prayer.name}
-                    </h3>
-                    <p className={`text-3xl font-bold ${
-                      prayer.name === nextPrayer ? 'text-neutral-900' : 'text-neutral-900'
-                    }`}>
-                      {prayer.time}
-                    </p>
-                  </div>
-                ))
               )}
             </div>
 
