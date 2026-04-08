@@ -1,26 +1,16 @@
-# Al-Rahma Frontend (Vite + React)
+# React + Vite
 
-## Local Development
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-1. Install dependencies:
-	npm install
-2. Copy environment template:
-	copy .env.example .env.local
-3. Start dev server:
-	npm run dev
+Currently, two official plugins are available:
 
-## Backend Connection
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-The frontend resolves prayer times in this order:
+## React Compiler
 
-1. Firebase Realtime Database (`mosque/prayerTimes`)
-2. Public fallback API (`api.aladhan.com`)
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Deploy To Vercel
+## Expanding the ESLint configuration
 
-1. Import the `vite-project` folder in Vercel.
-2. Framework preset: `Vite`.
-3. Build command: `npm run build`.
-4. Output directory: `dist`.
-5. Add all `VITE_...` variables from `.env.example` in Vercel Project Settings -> Environment Variables.
-6. Redeploy.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
