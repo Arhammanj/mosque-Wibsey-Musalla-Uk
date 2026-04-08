@@ -1,12 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { database, storage } from '../firebase'
 import { ref as dbRef, set, get, remove } from 'firebase/database'
 import { ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import './Admin.css'
 
+const auth = getAuth()
+
 function Admin() {
+  const [adminEmail, setAdminEmail] = useState('')
   const [adminPassword, setAdminPassword] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [authError, setAuthError] = useState('')
+  const [authChecking, setAuthChecking] = useState(true)
   const [prayerTimes, setPrayerTimes] = useState({
     fajr: { time: '5:37 AM', hour: 5, minute: 37 },
     dhuhr: { time: '12:30 PM', hour: 12, minute: 30 },
@@ -18,16 +24,23 @@ function Admin() {
     heroTitle: 'Welcome to Al-Rahma Islamic Centre',
     heroSubtitle: 'A place of worship, unity, and community service',
     heroImageUrl: '/q2.jpg',
-    prayerImageUrl: '/timing.jpeg',
+    prayerImageUrl: '/timing1.jpg',
     footerImageUrl: '/q1.webp'
   })
   const [announcementForm, setAnnouncementForm] = useState({ title: '', message: '' })
   const [announcementItems, setAnnouncementItems] = useState([])
   const [uploadingSlot, setUploadingSlot] = useState('')
 
-  const PASSWORD = 'admin123' // Change this to your password
-
   const PRAYER_ORDER = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha']
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsLoggedIn(Boolean(user))
+      setAuthChecking(false)
+    })
+
+    return () => unsubscribe()
+  }, [])
 
   const to12Hour = (hour, minute) => {
     const ampm = hour >= 12 ? 'PM' : 'AM'
@@ -56,17 +69,31 @@ function Admin() {
     return { hour, minute }
   }
 
-  const handleLogin = () => {
-    if (adminPassword === PASSWORD) {
-      setIsLoggedIn(true)
+  const handleLogin = async () => {
+    setAuthError('')
+
+    if (!adminEmail.trim() || !adminPassword.trim()) {
+      setAuthError('Please enter email and password.')
+      return
+    }
+
+    try {
+      await signInWithEmailAndPassword(auth, adminEmail.trim(), adminPassword)
       setAdminPassword('')
-    } else {
-      alert('Wrong password!')
+    } catch (error) {
+      console.error('Login error:', error)
+      setAuthError(error.message || 'Login failed. Please try again.')
     }
   }
 
-  const handleLogout = () => {
-    setIsLoggedIn(false)
+  const handleLogout = async () => {
+    try {
+      await signOut(auth)
+      setAuthError('')
+    } catch (error) {
+      console.error('Logout error:', error)
+      alert(`Error signing out: ${error.message || 'Unknown error'}`)
+    }
   }
 
   const updatePrayerTimeFromInput = (prayer, inputValue) => {
@@ -252,14 +279,23 @@ function Admin() {
       <div className="admin-login">
         <div className="admin-login-box">
           <h2>Admin Panel</h2>
+          {authChecking && <p>Checking session...</p>}
+          <input
+            type="email"
+            placeholder="Enter admin email"
+            value={adminEmail}
+            onChange={(e) => setAdminEmail(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
+          />
           <input
             type="password"
             placeholder="Enter password"
             value={adminPassword}
             onChange={(e) => setAdminPassword(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
+            onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
           />
-          <button onClick={handleLogin}>Login</button>
+          {authError && <p className="helper-text">{authError}</p>}
+          <button onClick={handleLogin} disabled={authChecking}>Login</button>
         </div>
       </div>
     )
