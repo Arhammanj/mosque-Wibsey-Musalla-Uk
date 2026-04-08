@@ -18,7 +18,7 @@ function Admin() {
     heroTitle: 'Welcome to Al-Rahma Islamic Centre',
     heroSubtitle: 'A place of worship, unity, and community service',
     heroImageUrl: '/q2.jpg',
-    prayerImageUrl: '/timing.jpeg',
+    prayerImageUrl: '/timing1.jpg',
     footerImageUrl: '/q1.webp'
   })
   const [announcementForm, setAnnouncementForm] = useState({ title: '', message: '' })
