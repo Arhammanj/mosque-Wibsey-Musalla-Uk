@@ -22,7 +22,7 @@ function App() {
     heroTitle: 'Welcome to Al-Rahma Islamic Centre',
     heroSubtitle: 'A place of worship, unity, and community service',
     heroImageUrl: '/q2.jpg',
-    prayerImageUrl: '/timing1.jpg',
+    prayerImageUrl: '/apriltiming.jpeg',
     footerImageUrl: '/q1.webp'
   })
 
@@ -584,7 +584,7 @@ function App() {
             {/* Timing Image */}
             <div className="flex justify-center">
               <img 
-                src={siteSettings.prayerImageUrl || '/timing1.jpg'} 
+                src={siteSettings.prayerImageUrl || '/apriltiming.jpeg'} 
                 alt="Prayer Times Schedule" 
                 className="w-full max-w-4xl rounded-xl shadow-2xl border-2 border-primary-200"
               />
