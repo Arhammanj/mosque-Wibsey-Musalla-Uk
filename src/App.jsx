@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import { fetchPrayerTimes, fetchAnnouncements, fetchSiteSettings } from './services/firebaseService'
 
 function App() {
   const [darkMode, setDarkMode] = useState(true)
@@ -237,71 +236,12 @@ function App() {
 
   const hadithOfTheDay = getHadithOfTheDay()
 
-  // Fetch editable site settings and announcements
-  useEffect(() => {
-    const loadSiteContent = async () => {
-      const [settingsData, announcementsData] = await Promise.all([
-        fetchSiteSettings(),
-        fetchAnnouncements()
-      ])
-
-      if (settingsData) {
-        setSiteSettings((prev) => ({ ...prev, ...settingsData }))
-      }
-
-      if (announcementsData && typeof announcementsData === 'object') {
-        const mappedAnnouncements = Object.entries(announcementsData)
-          .filter(([, value]) => value && typeof value === 'object' && value.message)
-          .map(([id, value]) => ({
-            id,
-            title: value.title || 'Announcement',
-            message: value.message,
-            timestamp: value.timestamp || ''
-          }))
-          .sort((a, b) => (b.timestamp || '').localeCompare(a.timestamp || ''))
-
-        if (mappedAnnouncements.length > 0) {
-          setAnnouncements(mappedAnnouncements)
-        }
-      }
-    }
-
-    loadSiteContent()
-  }, [])
-
-  // Fetch prayer times from Firebase or API
+  // Fetch prayer times from public API
   useEffect(() => {
     const loadPrayerTimes = async () => {
       try {
         setLoading(true)
-        
-        // First, try to fetch from Firebase
-        const firebaseData = await fetchPrayerTimes()
-        
-        if (firebaseData) {
-          // If Firebase has data, use it
-          const prayers = []
-          Object.keys(firebaseData).forEach(key => {
-            const prayer = firebaseData[key]
-            if (prayer.time) {
-              prayers.push({
-                name: key.charAt(0).toUpperCase() + key.slice(1),
-                time: prayer.time,
-                hour: prayer.hour || 0,
-                minute: prayer.minute || 0
-              })
-            }
-          })
-          
-          if (prayers.length > 0) {
-            setPrayerTimes(prayers)
-            setError(null)
-            setLoading(false)
-            return
-          }
-        }
-        
-        // Fallback: Fetch from public API
+
         const latitude = 53.7765
         const longitude = -1.7623
         const method = 2 // ISNA method
@@ -638,15 +578,7 @@ function App() {
               <h2 className="text-3xl sm:text-4xl font-bold text-neutral-800 mb-4">
                 Daily Prayer Times
               </h2>
-              <p className="text-neutral-600">
-                {loading ? 'Loading prayer times...' : `Updated: ${new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}`}
-              </p>
               {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-              {nextPrayer && !loading && (
-                <p className="text-neutral-900 font-bold mt-2 text-lg">
-                  Next Prayer: {nextPrayer}
-                </p>
-              )}
             </div>
 
             {/* Timing Image */}
